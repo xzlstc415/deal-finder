@@ -28,8 +28,32 @@ const Welcome = () => {
       })
     );
   }, []);
+  const handleValidation = () => {
+    const errors = [];
+    if (minPrice && isNaN(parseInt(minPrice))) {
+      errors.push('minimum price is not a valid number');
+    }
+    if (maxPrice && isNaN(parseInt(maxPrice))) {
+      errors.push('maximum price is not a valid number');
+    }
+    const d = new Date(listedSince);
+    if (Object.prototype.toString.call(d) === '[object Date]') {
+      if (isNaN(d.getTime())) {
+        errors.push('listed since is not a valid date');
+      }
+    }
+    if (errors.length > 0) {
+      alert(errors);
+      return false;
+    }
+    return true;
+  };
   const handleSubmit = event => {
     event.preventDefault();
+    const isValid = handleValidation();
+    if (!isValid) {
+      return;
+    }
     setListings(
       fetchListings({
         bedrooms,
