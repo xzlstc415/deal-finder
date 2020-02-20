@@ -1,0 +1,8 @@
+input {
+  padding: 0.55rem 0.75rem;
+  outline: none;
+}
+
+input:focus {
+  outline: none;
+}

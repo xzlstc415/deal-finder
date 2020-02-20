@@ -5,23 +5,25 @@ const PropertyList = ({ listings }) => {
   });
   return (
     <div className="listings-wrapper">
-      {listings.map((listing, index) => (
-        <div className="listing-container" index={index}>
-          <div
-            className="listing-thumbnail"
-            style={{ backgroundImage: `url(${listing.thumbnail})` }}
-          />
-          <div className="listing-summary">
-            <div className="price summary-item">
-              {formatter.format(listing.price)}
+      {listings &&
+        listings.map((listing, index) => (
+          <div className="listing-container" key={index}>
+            <div
+              className="listing-thumbnail"
+              style={{ backgroundImage: `url(${listing.thumbnail})` }}
+            />
+            <div className="listing-summary">
+              <div className="price summary-item">
+                {formatter.format(listing.price)}
+              </div>
+              <div className="summary-item">
+                {listing.bedrooms || 0} Beds &nbsp;{listing.bathrooms || 0}{' '}
+                Baths
+              </div>
+              <div className="summary-item">{listing.location}</div>
             </div>
-            <div className="summary-item">
-              {listing.bedrooms || 0} Beds &nbsp;{listing.bathrooms || 0} Baths
-            </div>
-            <div className="summary-item">{listing.location}</div>
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 };

@@ -9,8 +9,7 @@ const listings = [
     listedSince: new Date('2020-02-19'),
     buildingType: 'Detached',
     mlsNumber: '1020401240',
-    thumbnail:
-      'https://media.wesc.mlxmatrix.com/mediaserver/GetMedia.ashx?Key=12001227&TableID=9&Type=1&Number=0&Size=2&exk=5e6bf15543c2c5e51622eda0d88c3089'
+    thumbnail: '/house3.jpeg'
   },
   {
     id: 2,
@@ -22,8 +21,7 @@ const listings = [
     listedSince: new Date('2020-02-01'),
     buildingType: 'Semi-Detached',
     mlsNumber: '12314145',
-    thumbnail:
-      'https://media.wesc.mlxmatrix.com/mediaserver/GetMedia.ashx?Key=11995444&TableID=9&Type=1&Number=0&Size=2&exk=cdf225231c4f580453a1100a7420b07c'
+    thumbnail: '/house2.jpeg'
   },
   {
     id: 3,
@@ -35,8 +33,7 @@ const listings = [
     listedSince: new Date('2020-01-12'),
     buildingType: 'Condo',
     mlsNumber: '12314145',
-    thumbnail:
-      'https://media.wesc.mlxmatrix.com/mediaserver/GetMedia.ashx?Key=11919981&TableID=9&Type=1&Number=0&Size=2&exk=05e65463d8c7c9679c28e71c16fd42fb'
+    thumbnail: '/house1.jpeg'
   },
   {
     id: 4,
@@ -48,8 +45,7 @@ const listings = [
     listedSince: new Date('2019-10-12'),
     buildingType: 'Land',
     mlsNumber: '14155113',
-    thumbnail:
-      'https://media.wesc.mlxmatrix.com/mediaserver/GetMedia.ashx?Key=11843183&TableID=9&Type=1&Number=0&Size=2&exk=7e723e47e42049746aee86a5d856192f'
+    thumbnail: '/land.jpeg'
   },
   {
     id: 5,
@@ -61,10 +57,29 @@ const listings = [
     listedSince: new Date('2019-11-15'),
     buildingType: 'Plaza',
     mlsNumber: '99155113',
-    thumbnail:
-      'https://media.wesc.mlxmatrix.com/mediaserver/GetMedia.ashx?Key=11804136&TableID=9&Type=1&Number=0&Size=2&exk=32141f6ae0b53bc71b308bd0fa21bf78'
+    thumbnail: '/plaza.jpeg'
   }
 ];
+
+const findByBedrooms = (result, bedrooms) => {
+  return result.filter(listing => {
+    if (bedrooms.match(/\+$/)) {
+      return listing.bedrooms >= parseInt(bedrooms.replace('+', ''));
+    } else {
+      return listing.bedrooms === parseInt(bedrooms);
+    }
+  });
+};
+
+const findByBathrooms = (result, bathrooms) => {
+  return result.filter(listing => {
+    if (bathrooms.match(/\+$/)) {
+      return listing.bathrooms >= parseInt(bathrooms.replace('+', ''));
+    } else {
+      return listing.bathrooms === parseInt(bathrooms);
+    }
+  });
+};
 
 export const fetchListings = ({
   location,
@@ -79,31 +94,31 @@ export const fetchListings = ({
 }) => {
   let result = listings;
   if (location) {
-    result = result.findByLocation(location);
+    result = findByLocation(result, location);
   }
   if (bedrooms) {
-    result = result.findByBedrooms(bedrooms);
+    result = findByBedrooms(result, bedrooms);
   }
   if (bathrooms) {
-    result = result.findByBathrooms(bathrooms);
+    result = findByBathrooms(result, bathrooms);
   }
   if (type) {
-    result = result.findByType(type);
+    result = findByType(result, type);
   }
   if (minPrice) {
-    result = result.findByMinPrice(minPrice);
+    result = findByMinPrice(result, minPrice);
   }
   if (maxPrice) {
-    result = result.findByMaxPrice(maxPrice);
+    result = findByMaxPrice(result, maxPrice);
   }
   if (listedSince) {
-    result = result.findByListedSince(listedSince);
+    result = findByListedSince(result, listedSince);
   }
   if (buildingType) {
-    result = result.findByBuildingType(buildingType);
+    result = findByBuildingType(result, buildingType);
   }
   if (mlsNumber) {
-    result = result.findByMlsNumber(mlsNumber);
+    result = findByMlsNumber(result, mlsNumber);
   }
   return result;
 };
