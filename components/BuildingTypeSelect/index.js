@@ -2,6 +2,7 @@ import React from 'react';
 import ReactSelect from 'react-select';
 
 const options = [
+  { value: null, label: 'All' },
   { value: 'Detached', label: 'Detached' },
   { value: 'Semi-Detached', label: 'Semi-Detached' },
   { value: 'Condo', label: 'Condo' },

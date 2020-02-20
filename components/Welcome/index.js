@@ -8,7 +8,7 @@ import Input from '../Input';
 
 const Welcome = () => {
   const [listings, setListings] = useState([]);
-  const [bedrooms, setBadrooms] = useState(null);
+  const [bedrooms, setBedrooms] = useState(null);
   const [bathrooms, setBathrooms] = useState(null);
   const [type, setType] = useState(null);
   const [minPrice, setMinPrice] = useState(null);
@@ -53,7 +53,7 @@ const Welcome = () => {
           <RoomSelect
             placeholder="No. of bedrooms"
             onChange={selectedOption => {
-              setBadrooms(selectedOption.value);
+              setBedrooms(selectedOption.value);
             }}
           />
           <RoomSelect
