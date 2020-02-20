@@ -87,6 +87,30 @@ const findByType = (result, type) => {
   });
 };
 
+const findByBuildingType = (result, buildingType) => {
+  return result.filter(listing => {
+    return listing.buildingType === buildingType;
+  });
+};
+
+const findByMinPrice = (result, minPrice) => {
+  return result.filter(listing => {
+    return listing.price >= minPrice;
+  });
+};
+
+const findByMaxPrice = (result, maxPrice) => {
+  return result.filter(listing => {
+    return listing.price <= maxPrice;
+  });
+};
+
+const findByListedSince = (result, listedSince) => {
+  return result.filter(listing => {
+    return new Date(listing.listedSince) >= new Date(listedSince);
+  });
+};
+
 export const fetchListings = ({
   location,
   bedrooms,

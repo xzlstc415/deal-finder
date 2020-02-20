@@ -50,5 +50,6 @@ body {
 
 .filter-form {
   display: flex;
+  flex-wrap: wrap;
   padding: 1em 5em;
 }
