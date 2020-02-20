@@ -1,0 +1,34 @@
+.listings-wrapper {
+  display: flex;
+  padding: 5em;
+  flex-wrap: wrap;
+}
+
+.listing-thumbnail {
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.listing-container {
+  width: 300px;
+  margin: 3em 1em;
+  border-radius: 5px;
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(156, 156, 156, 1);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(156, 156, 156, 1);
+  box-shadow: 3px 3px 5px 0px rgba(156, 156, 156, 1);
+  cursor: pointer;
+}
+
+.listing-summary {
+  padding: 1em;
+}
+
+.price {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.summary-item {
+  margin: 5px;
+}
