@@ -81,6 +81,12 @@ const findByBathrooms = (result, bathrooms) => {
   });
 };
 
+const findByType = (result, type) => {
+  return result.filter(listing => {
+    return listing.type === type;
+  });
+};
+
 export const fetchListings = ({
   location,
   bedrooms,

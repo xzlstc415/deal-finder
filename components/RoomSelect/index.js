@@ -12,8 +12,8 @@ const options = [
   { value: '4+', label: '4+' }
 ];
 
-const Select = props => (
+const RoomSelect = props => (
   <ReactSelect {...props} options={options} className="filter-select" />
 );
 
-export default Select;
+export default RoomSelect;

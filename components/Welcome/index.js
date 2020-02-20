@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { fetchListings } from '../../data/listing';
 import PropertyList from './PropertyList';
-import useLocation from '../../hooks/useLocation';
-import useBedrooms from '../../hooks/useBedrooms';
-import Select from '../Select';
+import RoomSelect from '../RoomSelect';
+import TypeSelect from '../TypeSelect';
 
 const Welcome = () => {
   const [listings, setListings] = useState([]);
-  const [location] = useLocation();
-  const [bedrooms, setBadrooms] = useBedrooms();
+  const [bedrooms, setBadrooms] = useState(null);
   const [bathrooms, setBathrooms] = useState(null);
   const [type, setType] = useState(null);
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
   const [listedSince, setListedSince] = useState(null);
   const [buildingType, setBuildingType] = useState(null);
-  const [mlsNumber, setMlsNumber] = useState(null);
   useEffect(() => {
     setListings(
       fetchListings({
@@ -50,16 +47,22 @@ const Welcome = () => {
         This is a page that helps you to find your next home or investment
       </p>
       <form onSubmit={handleSubmit} className="filter-form">
-        <Select
+        <RoomSelect
           placeholder="No. of bedrooms"
           onChange={selectedOption => {
             setBadrooms(selectedOption.value);
           }}
         />
-        <Select
+        <RoomSelect
           placeholder="No. of bathrooms"
           onChange={selectedOption => {
             setBathrooms(selectedOption.value);
+          }}
+        />
+        <TypeSelect
+          placeholder="Property Type"
+          onChange={selectedOption => {
+            setType(selectedOption.value);
           }}
         />
         <button type="submit">Filter</button>
